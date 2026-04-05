@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Atlas Trails Design System
+   Logo Colors: Teal #4ECBA8 → HSL 162 52% 55% | Blue #4B6FD4 → HSL 225 58% 56%
+   Background: soft blue-tinted off-white HSL 220 30% 97%
+   Consistent 16px border radius, 8px spacing system
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 30% 97%;
+    --foreground: 225 40% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 225 40% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 40% 14%;
+
+    /* Teal primary from logo */
+    --primary: 162 52% 55%;
+    --primary-foreground: 225 40% 14%;
+
+    --secondary: 225 25% 94%;
+    --secondary-foreground: 225 40% 14%;
+
+    --muted: 225 20% 92%;
+    --muted-foreground: 225 18% 46%;
+
+    --accent: 225 58% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 20% 88%;
+    --input: 225 20% 92%;
+    --ring: 162 52% 55%;
+
+    /* Atlas custom tokens — teal + blue from logo */
+    --mint: 162 52% 55%;
+    --mint-light: 162 55% 92%;
+    --mint-dark: 162 50% 36%;
+    --brand-blue: 225 58% 56%;
+    --brand-blue-light: 225 60% 93%;
+    --brand-blue-dark: 225 55% 38%;
+    --navy: 225 40% 14%;
+    --navy-muted: 225 28% 26%;
+    --surface: 0 0% 100%;
+    --surface-hover: 225 25% 97%;
+
+    --radius: 1rem;
+
+    --shadow-sm: 0 2px 8px hsl(225 40% 14% / 0.06);
+    --shadow-md: 0 4px 20px hsl(225 40% 14% / 0.10);
+    --shadow-lg: 0 8px 40px hsl(225 40% 14% / 0.14);
+    --shadow-mint: 0 4px 20px hsl(162 52% 55% / 0.35);
+    --shadow-blue: 0 4px 20px hsl(225 58% 56% / 0.30);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 225 40% 14%;
+    --sidebar-primary: 162 52% 55%;
+    --sidebar-primary-foreground: 225 40% 14%;
+    --sidebar-accent: 225 25% 94%;
+    --sidebar-accent-foreground: 225 40% 14%;
+    --sidebar-border: 225 20% 88%;
+    --sidebar-ring: 162 52% 55%;
+  }
+
+  .dark {
+    --background: 225 35% 9%;
+    --foreground: 220 20% 94%;
+    --card: 225 30% 13%;
+    --card-foreground: 220 20% 94%;
+    --primary: 162 52% 55%;
+    --primary-foreground: 225 40% 14%;
+    --secondary: 225 25% 18%;
+    --secondary-foreground: 220 20% 90%;
+    --muted: 225 25% 16%;
+    --muted-foreground: 225 18% 60%;
+    --accent: 225 58% 56%;
+    --accent-foreground: 0 0% 100%;
+    --border: 225 22% 22%;
+    --input: 225 22% 19%;
+    --ring: 162 52% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Syne', sans-serif; }
+  .font-body { font-family: 'Inter', sans-serif; }
+
+  /* Logo-matched gradient: teal → blue */
+  .gradient-mint {
+    background: linear-gradient(135deg, hsl(var(--mint)) 0%, hsl(var(--brand-blue)) 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(220 30% 97%) 0%, hsl(162 45% 93%) 50%, hsl(225 50% 94%) 100%);
+  }
+
+  .gradient-brand {
+    background: linear-gradient(135deg, hsl(var(--mint)) 0%, hsl(var(--brand-blue)) 100%);
+  }
+
+  .text-gradient-mint {
+    background: linear-gradient(135deg, hsl(var(--mint-dark)), hsl(var(--brand-blue-dark)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(135deg, hsl(var(--mint-dark)), hsl(var(--brand-blue)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-mint { box-shadow: var(--shadow-mint); }
+  .shadow-blue { box-shadow: var(--shadow-blue); }
+  .shadow-card { box-shadow: var(--shadow-md); }
+  .shadow-elevated { box-shadow: var(--shadow-lg); }
+
+  .glass {
+    background: hsl(0 0% 100% / 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .pill {
+    border-radius: 100px;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .input-atlas {
+    @apply h-12 rounded-2xl border border-border bg-white px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all;
+  }
+
+  .btn-atlas-primary {
+    @apply h-12 px-6 rounded-2xl font-semibold text-sm transition-all duration-200;
+    background: hsl(var(--mint));
+    color: hsl(var(--navy));
+    box-shadow: var(--shadow-mint);
+  }
+  .btn-atlas-primary:hover {
+    background: hsl(149 70% 62%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px hsl(149 83% 71% / 0.45);
+  }
+
+  .btn-atlas-outline {
+    @apply h-12 px-6 rounded-2xl font-semibold text-sm border-2 border-border bg-white transition-all duration-200;
+  }
+  .btn-atlas-outline:hover {
+    border-color: hsl(var(--mint));
+    color: hsl(var(--mint-dark));
+  }
+
+  .interest-card {
+    @apply cursor-pointer rounded-2xl border-2 border-border p-4 transition-all duration-200 text-center select-none;
+    background: white;
+  }
+  .interest-card:hover {
+    border-color: hsl(var(--mint));
+  }
+  .interest-card.selected {
+    border-color: hsl(var(--mint));
+    background: hsl(var(--mint-light));
+  }
+
+  .companion-card {
+    @apply cursor-pointer rounded-2xl border-2 border-border p-4 transition-all duration-200 text-center select-none flex flex-col items-center gap-2;
+    background: white;
+  }
+  .companion-card:hover { border-color: hsl(var(--mint)); }
+  .companion-card.selected {
+    border-color: hsl(var(--mint));
+    background: hsl(var(--mint-light));
+  }
+
+  .day-card {
+    @apply rounded-2xl border border-border bg-white overflow-hidden transition-all duration-200;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .chat-bubble-user {
+    @apply rounded-2xl rounded-br-sm px-4 py-3 text-sm max-w-xs ml-auto;
+    background: hsl(var(--mint));
+    color: hsl(var(--navy));
+  }
+
+  .chat-bubble-ai {
+    @apply rounded-2xl rounded-bl-sm px-4 py-3 text-sm max-w-xs;
+    background: white;
+    border: 1px solid hsl(var(--border));
+  }
+}
